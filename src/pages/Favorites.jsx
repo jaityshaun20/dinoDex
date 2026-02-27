@@ -1,8 +1,19 @@
+import { useFavorites } from "../contexts/FavoritesContext";
+import DinoCard from "../components/DinoCard";
+
 function Favorites() {
+  const { favorites } = useFavorites();
+
+  if (favorites.length === 0) {
+    return <p>No favorites yet.</p>;
+  }
+
   return (
     <div>
-      <h2>Your Favorite Dinosaurs</h2>
-      <p>No favorites yet.</p>
+      <h2>Your Favorites</h2>
+      {favorites.map((dino, index) => (
+        <DinoCard key={index} dino={dino} />
+      ))}
     </div>
   );
 }
