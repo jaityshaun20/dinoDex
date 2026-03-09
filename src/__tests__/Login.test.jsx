@@ -1,16 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import Nav from "../components/Nav";
+import Login from "../pages/Login";
 import { AuthProvider } from "../contexts/AuthContext";
 
-test("renders navigation links", () => {
+test("renders login form", () => {
   render(
     <BrowserRouter>
       <AuthProvider>
-        <Nav />
+        <Login />
       </AuthProvider>
     </BrowserRouter>
   );
 
-  expect(screen.getByText("Home")).toBeInTheDocument();
+  // check heading instead of generic text
+  expect(screen.getByRole("heading", { name: /login/i })).toBeInTheDocument();
 });
